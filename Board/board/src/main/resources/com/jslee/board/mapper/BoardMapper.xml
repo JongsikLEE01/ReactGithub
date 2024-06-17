@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jslee.board.mapper.BoardMapper">
+    <select id="list" resultType="Board">
+        select *
+        from board_react
+    </select>
+
+    <select id="select" resultType="Board">
+        select *
+        from board_react
+        where no = #{no}
+    </select>
+
+    <update id="update">
+        update board_react
+        set title = #{title}
+            , content = #{content}
+            , writer = #{writer}
+            , upd_date = now()
+        where no = #{no}
+    </update>
+
+    <delete id="delete">
+        delete from board_react
+        where no = #{no} 
+    </delete>
+
+    <!-- 등록 -->
+    <!-- 
+        AUTO_INCREMENT 값 담기
+        1. userGeneratedkeys : AUTO_INCREMENT 된 값을 keyProperty 에 변수에 저장
+        2. selectKey 사용
+     -->
+    <!-- <insert id="insert" userGeneratedkeys="true"> -->
+    <insert id="insert">
+        <!-- <selectKey keyProperty="no" resultType="int" order="AFTER">
+            select LAST_INSERT_ID() FROM dual
+        </selectKey> -->
+        insert into board_react(title, content, writer)
+        value (#{title}, #{content}, #{writer})
+    </insert>
+</mapper>
