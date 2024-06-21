@@ -11,13 +11,13 @@ CREATE TABLE `todo` (
 INSERT INTO todo(name, status)
 VALUES
 ('todo01', 1),
-('todo02', 0),
+('todo02', 1),
 ('todo03', 1),
 ('todo04', 0),
-('todo05', 1),
+('todo05', 0),
 ('todo06', 0),
-('todo07', 1),
+('todo07', 0),
 ('todo08', 0),
-('todo09', 1),
+('todo09', 0),
 ('todo10', 0)
 ;
