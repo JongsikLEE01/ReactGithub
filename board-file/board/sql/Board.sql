@@ -1,4 +1,3 @@
--- Active: 1717979949380@@127.0.0.1@3306@joeun
 CREATE TABLE board_react(
   no        INT             NOT NULL AUTO_INCREMENT COMMENT '게시판 번호',
   title     VARCHAR(100)    NOT NULL COMMENT '게시판 제목',
