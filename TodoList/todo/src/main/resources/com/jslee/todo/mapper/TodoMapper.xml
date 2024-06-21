@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jslee.todo.mapper.TodoMapper">
+    <select id="list" resultType="Todo">
+        select *
+        from todo
+        ORDER BY reg_date DESC;
+    </select>
+
+    <select id="select" resultType="Todo">
+        select *
+        from todo
+        where no = #{no}
+    </select>
+
+    <update id="update">
+        update todo
+        set name = #{name}
+            , status = #{status}
+            , upd_date = now()
+        where no = #{no}
+    </update>
+
+    <delete id="delete">
+        delete from todo
+        where no = #{no} 
+    </delete>
+
+    <!-- 등록 -->
+    <!-- 
+        AUTO_INCREMENT 값 담기
+        1. userGeneratedkeys : AUTO_INCREMENT 된 값을 keyProperty 에 변수에 저장
+        2. selectKey 사용
+     -->
+    <!-- <insert id="insert" userGeneratedkeys="true"> -->
+    <insert id="insert">
+        <selectKey keyProperty="no" resultType="int" order="AFTER">
+            select LAST_INSERT_ID() FROM dual
+        </selectKey>
+        insert into todo(name, status)
+        value (#{name}, #{status})
+    </insert>
+
+    <update id="updateAll">
+        update todo
+        set status = 1
+        , upd_date = now()
+    </update>
+
+    <delete id="deleteAll">
+        delete
+        from todo
+    </delete>
+
+</mapper>
